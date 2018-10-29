@@ -4,8 +4,12 @@
     border-color: #ebccd1;
   }
   
-  .alert-success_msg{
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-  }
+.alert-success_msg{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert{
+  width:20%;
+}
