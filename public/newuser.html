@@ -5,16 +5,8 @@
     <meta charset="utf-8">
     <title>New User  | Fazt</title>
     <link rel="stylesheet" type="text/css" href="newuser.css">
-    <link rel="stylesheet"
-          type="text/css"
-          href="css/jquery-ui-lightness/jquery-ui.min.css" />
-    <script type="text/javascript"
-            src="js/jquery.js">
+    <script type="text/javascript" src="js/jquery.js">
     </script>
-    <script
-		src="js/jquery-3.3.1.min.js"
-		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		crossorigin="anonymous"></script>
     <link rel="stylesheet"
     type="text/css"
     href="css/jquery-ui.css" />
@@ -24,14 +16,15 @@
       <div class="login-box">
       <img src="logo3.jpeg" class="avatar" >
       <h1>Create New Account</h1>
-      <form name = "SignUp">
+      <form name = "SignUp" method='POST', action='/users/register'>
         <!-- Register INPUT -->
-        <input type="text" name="EId" placeholder="Enter Employer Id">
-        <input type="text" name="Eu" placeholder="Enter preferred username">
+        <input type="text" name="id" placeholder="Enter Employer Id">
+        <input type="text" name="username" placeholder="Enter username">
+        <input type="text" name="email" placeholder="Enter email">
         <!-- PASSWORD INPUT -->    
-        <input type="password" name="pwd" placeholder="Enter password">
+        <input type="password" name="password" placeholder="Enter password">
         
-        <div class = "custom-select" width ="100px;" id="Loc">
+        <div class = "custom-select" width ="100px;" id="location">
             <select>
               <option value="0">Select Location</option>
               <option value="1">California</option>
@@ -45,7 +38,7 @@
          
 
         <!--Button widget has been added -->
-        <input type="button" class="btn" onclick = "check(this.form)" id ="submit" name="submit" value="SignUp">
+        <input type="submit" class="btn" id ="submit" name="submit" value="SignUp">
         <!--  <a href="main.html"><input type="submit" onclick = "check(this.form)" name="submit" value="SignUp"></a> -->
          <!-- <input type="button" class="btn" value="Login" id="submit" onclick="validateUser()" /> -->
         </form>
@@ -60,34 +53,8 @@
 
          <script>
             //!--selectmenu widget used in lightness theme-->
-          $("Loc").selectmenu();
+          $("location").selectmenu();
          </script>
-
-        <script language="javascript">
-          function check(form)/*function to check userid & password*/
-          {
-            u_RE = /^[a-zA-Z\-]+$/;
-            u_value = form.Eu.value;
-            id_RE = /^\d+$/;
-            e_value = form.EId.value;
-            pwd_RE = /^[a-zA-Z\-]+$/;
-            p_value = form.pwd.value;
-            console.log(p_value );
-            console.log(e_value );
-
-          /*the following code checkes whether the entered userid and password are matching*/
-          if(e_value.match(id_RE) && u_value.match(u_RE) && p_value.match(pwd_RE))
-          {
-          window.open('login.html')/*opens the target page while successfull signup*/
-          }
-          else
-          {
-          
-          alert("Check: EmloyeeId can be numeric only" + "Username should be alphabets" + "Password can have min 5 characters alhanumeric and atleast 1 special character ! or ?")/*displays error message*/
-          window.open('newuser.html')
-          }
-          }
-          </script>
 
 <script>
     var x, i, j, selElmnt, a, b, c;
@@ -140,6 +107,7 @@
           this.classList.toggle("select-arrow-active");
         });
     }
+    
     function closeAllSelect(elmnt) {
       /*a function that will close all select boxes in the document,
       except the current select box:*/
