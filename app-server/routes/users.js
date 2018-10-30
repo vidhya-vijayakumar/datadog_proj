@@ -6,6 +6,20 @@ const passport = require('passport');
 // Bring in User Model
 let User = require('../models/user');
 
+// Home Route to show all users
+router.get('/', function(req, res){
+  User.find({}, function(err, users){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('display', {
+        title:'Users',
+        users: users
+      });
+    }
+  });
+});
+
 // Register Form
 router.get('/register', function(req, res){
   //res.redirect('/newuser.html');

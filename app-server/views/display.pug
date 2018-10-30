@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 #{title}
+  ul.list-group
+    each user, i in users
+      li.list-group-item
+        p=user.username
+        p=user.id
+        p=user.email
