@@ -121,7 +121,7 @@ router.post('/update', function(req, res){
               return;
             } else {
               req.flash('success', 'User Updated');
-              res.redirect('/');
+              res.redirect('/users/logout');
             }
           });
         });
@@ -144,7 +144,7 @@ router.get('/delete', ensureAuthenticated, function(req, res){
   res.render('delete');
 });
 
-router.delete('/delete', function(req, res){
+router.post('/delete', function(req, res){
   // Check if username exists
   User.findOne({username:req.body.username}, function(err, myUser){
     if(err) {
@@ -161,7 +161,7 @@ router.delete('/delete', function(req, res){
             return;
           } else {
             req.flash('success', 'User Deleted');
-            res.redirect('/logout');
+            res.redirect('/users/logout');
           }
         });
       }  
