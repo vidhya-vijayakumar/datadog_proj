@@ -1,0 +1,15 @@
+extends layout
+
+block append head
+  //link(rel='stylesheet' href='/login.css')
+  link(rel='stylesheet' href='/css/jquery-ui.css')
+  link(rel='stylesheet' href='/css/jquery-ui.theme.css')
+
+block content
+    h1 Delete User
+    label Username:
+    input(type="text", id ='username', name='username', placeholder="Enter your username")
+    p(id="para") hello
+    br
+    a.btn.btn-danger.delete-user(href='#',data-id="username") Delete
+    script(src='/delete.js')

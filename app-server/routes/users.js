@@ -85,4 +85,97 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
+// Load Update Form
+router.get('/update', ensureAuthenticated, function(req, res){
+  res.render('update');
+});
+
+// Update Submit POST Route
+router.post('/update', function(req, res){
+  console.log(req.body);
+  // authenticate before updating
+  User.findOne({username:req.body.username}, function(err, myUser){
+    if(err) {
+      console.log('Error occured!');
+      console.log(err);
+    } 
+    if (myUser) {
+      // if the user exists
+      let updatedUser = {};
+      updatedUser.id = req.body.id;
+      updatedUser.username = req.body.username;
+      updatedUser.email = req.body.email;
+      updatedUser.password = req.body.password;
+    
+      bcrypt.genSalt(10, function(err, salt){
+        bcrypt.hash(updatedUser.password, salt, function(err, hash){
+          if(err){
+            console.log(err);
+          }
+          updatedUser.password = hash;
+          let query = {username:req.body.username};
+
+          User.update(query, updatedUser, function(err){
+            if(err){
+              console.log(err);
+              return;
+            } else {
+              req.flash('success', 'User Updated');
+              res.redirect('/');
+            }
+          });
+        });
+      });
+    } else {
+      // Do not update
+      res.render('update');
+    }
+    // later add this logic to see if the person is 
+    // updating his own record
+    /*if(myUser.id != req.user._id) {
+      req.flash('danger', 'Not Authorized');
+      res.redirect('/');
+    }*/
+  });
+});
+
+// Load Update Form
+router.get('/delete', ensureAuthenticated, function(req, res){
+  res.render('delete');
+});
+
+router.delete('/delete', function(req, res){
+  // Check if username exists
+  User.findOne({username:req.body.username}, function(err, myUser){
+    if(err) {
+      console.log('Error occured!');
+      console.log(err);
+    } 
+    if (myUser) {
+      console.log(myUser);
+      // if the user exists
+      let query = {username:req.body.username};
+        User.remove(query, function(err){
+          if(err){
+            console.log(err);
+            return;
+          } else {
+            req.flash('success', 'User Deleted');
+            res.redirect('/logout');
+          }
+        });
+      }  
+  });
+});
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/users/login');
+  }
+}
+
 module.exports = router;

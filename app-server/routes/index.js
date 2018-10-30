@@ -9,6 +9,16 @@ var ctrlAboutUs   = require("../controllers/aboutus");
 var ctrlContactUs = require("../controllers/contactus");
 var ctrlNews      = require("../controllers/news");
 
+// Access Control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+      return next();
+    } else {
+      req.flash('danger', 'Please login');
+      res.redirect('/users/login');
+    }
+  }
+  
 /*
  * GET home page.
  */
@@ -22,7 +32,7 @@ router.get('/home', ctrlMain.index);
 /*
  * GET main page.
  */
-router.get('/main', ctrlMain.main);
+router.get('/main', ensureAuthenticated, ctrlMain.main);
 
 /*
  * GET tableau page.

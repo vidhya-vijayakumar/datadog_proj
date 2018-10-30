@@ -1,0 +1,25 @@
+extends layout
+
+block append head
+  link(rel='stylesheet' href='/update.css')
+  link(rel='stylesheet' href='/css/jquery-ui.css')
+  link(rel='stylesheet' href='/css/jquery-ui.theme.css')
+
+block content
+  h1 Update User Profile
+  div(class='login-box')
+    form(method='POST', action='/users/update')
+        #form-group
+            label Id:
+            input.form-control(name='id', type='text', placeholder="Enter your Id")
+        #form-group
+            label Username:
+            input.form-control(name='username', type='text', placeholder="Enter your username")
+        #form-group
+            label Email:
+            input.form-control(name='email', type='text', placeholder="Enter your email")
+        #form-group
+            label Password:
+            input.form-control(name='password',type='password', placeholder='Enter password')
+        br
+        input.btn.btn-primary(type='submit',value='Submit')
