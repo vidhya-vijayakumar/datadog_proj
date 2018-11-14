@@ -8,6 +8,7 @@ const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const passport = require('passport');
+const methodOverride = require('method-override')
 
 // View engine setup
 // Load View Engine
@@ -17,6 +18,7 @@ app.set('view engine', 'pug');
 // Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true})); 
+app.use(methodOverride('_method'));
 
 // Configuring the database
 const dbConfig = require('./config/database');

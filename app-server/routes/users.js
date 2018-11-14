@@ -20,6 +20,27 @@ router.get('/', function(req, res){
   });
 });
 
+// Show user
+router.get('/user/:username', function(req, res){
+  User.findOne({username: req.params.username}, function(err, user){
+    if(err){
+      console.log(err);
+    } else {
+      if(user) {
+        res.render('show', {
+          title:"User: "+user.username,
+          user: user
+        });
+      } else {
+        res.render('show', {
+          title: "No such user:" + req.params.username,
+          user: user
+        });
+      }
+    }
+  });
+});
+
 // Register Form
 router.get('/register', function(req, res){
   //res.redirect('/newuser.html');
@@ -105,7 +126,7 @@ router.get('/update', ensureAuthenticated, function(req, res){
 });
 
 // Update Submit POST Route
-router.post('/update', function(req, res){
+router.put('/update', function(req, res){
   console.log(req.body);
   // authenticate before updating
   User.findOne({username:req.body.username}, function(err, myUser){
@@ -158,15 +179,24 @@ router.get('/delete', ensureAuthenticated, function(req, res){
   res.render('delete');
 });
 
-router.post('/delete', function(req, res){
+router.delete('/delete', function(req, res){
+  const username = req.body.username;
+  console.log("user is : "+ username);
+  req.checkBody('username', 'Name is required').notEmpty();
+  let errors = req.validationErrors();
   // Check if username exists
+  if(errors){
+    res.render('delete', {
+      errors:errors
+    });
+  } 
   User.findOne({username:req.body.username}, function(err, myUser){
     if(err) {
       console.log('Error occured!');
       console.log(err);
     } 
     if (myUser) {
-      console.log(myUser);
+      console.log("my user is : "+myUser);
       // if the user exists
       let query = {username:req.body.username};
         User.remove(query, function(err){

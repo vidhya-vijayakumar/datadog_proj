@@ -8,7 +8,7 @@ block append head
 block content
   h1 Update User Profile
   div(class='login-box')
-    form(method='POST', action='/users/update')
+    form(method='POST', action='/users/update?_method=PUT')
         #form-group
             label Id:
             input.form-control(name='id', type='text', placeholder="Enter your Id")

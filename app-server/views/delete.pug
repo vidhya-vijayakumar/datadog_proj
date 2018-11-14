@@ -8,7 +8,7 @@ block append head
 block content
   h1 Delete User
   div(class='login-box')
-    form(method='POST', action='/users/delete')
+    form(method='POST', action='/users/delete?_method=DELETE')
       #form-group
         label Username:
         input.form-control(name='username',type='text')
