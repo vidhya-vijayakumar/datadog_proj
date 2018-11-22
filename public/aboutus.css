@@ -4,15 +4,6 @@
     padding: 0;
 }
 
-header
-{
-height: 10%;
-background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url(background.jpg);
-background-size: cover;
-background-position: center;
-} 
-
 .logo {
     width: 10%;
     height: 5%;
@@ -22,6 +13,11 @@ background-position: center;
 
 body{
     font-family: monospace;
+    height: 10%;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url(background.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .row{

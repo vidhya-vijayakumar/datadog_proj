@@ -23,5 +23,6 @@ function sendPage(fileName, response)
 
 module.exports.aboutus = function(req,res)
 {
-    sendPage('public/aboutus.html',res);
+    //sendPage('public/aboutus.html',res);
+    res.render('aboutus');
 };
