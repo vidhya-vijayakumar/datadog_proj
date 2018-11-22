@@ -21,9 +21,11 @@ function sendPage(fileName, result)
     });
 }
 
-module.exports.index = function(request,result)
+module.exports.index = function(req,res)
 {
-    sendPage('home-page.html',result);
+    res.render('homepage', {
+        title: 'We Foretell your E-Commerce orders for a better tomorrow'
+    });
 };
 
 module.exports.login = function(request,result)

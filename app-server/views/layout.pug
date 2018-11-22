@@ -20,15 +20,25 @@ html
             ul.nav.navbar-nav
               li
                 a(href='/') Home
+              li
+                a(href='/aboutus') About Us
+              li
+                a(href='/contactus') Contact Us
+              li
+                a(href='/news') News
             ul.nav.navbar-nav.navbar-right
               if user
                 li 
                   a(href='/users/logout') Logout
+                li 
+                  a(href='/main') Main
               else
                 li
                   a(href='/users/register') Register
                 li
                   a(href='/users/login') Login
+
+                  
       .container
         != messages('message', locals)
         if errors

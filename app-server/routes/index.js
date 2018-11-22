@@ -39,16 +39,6 @@ router.get('/main', ensureAuthenticated, ctrlMain.main);
  */
 router.get('/', ctrlMain.tableau);
 
-/*
- * GET login page.
- */
-router.get('/', ctrlMain.login);
-
-/*
- * GET newuser page.
- */
-router.get('/', ctrlMain.newuser);
-
 /********************************* ContactUs *********************************/
 /*
  * GET Contactus page.

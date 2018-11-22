@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-header
+head
 {
 background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
 url(background.jpg);
@@ -24,6 +24,11 @@ background-position: center;
 
 body{
     font-family: monospace;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url(background.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
 .row{
