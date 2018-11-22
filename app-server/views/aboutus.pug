@@ -2,10 +2,10 @@ extends layout
 
 block append head
   link(rel='stylesheet' href='/aboutus.css')
-  link(rel='stylesheet' href='/css/jquery-ui-lightness/jquery-ui.min.css')
-  link(rel='stylesheet' href='/css/jquery-ui.theme.css')
+  script(src='/js/jquery-3.1.1.js')
+  script(src='/js/jquery-ui.js')        
+  script(src='/js/tabs.js')
 block content
-  canvas#canvas(width='200', height='200')
   h1(class='ui-state-default') About Us
   div(id='tabs' class='ui-widget-content')
     ul
@@ -17,9 +17,7 @@ block content
         a(href='/ishaan') Ishaan
       li
         a(href='/haroon') Haroon
-  link(rel='stylesheet' href='/css/jquery-ui-lightness/jquery-ui.min.css')
-  script(src='/js/jquery-3.1.1.js')
-  script(src='/js/jquery-ui.js')
-  script(src='/js/tabs.js')
+
+
 
   

@@ -4,13 +4,6 @@
     padding: 0;
 }
 
-.logo {
-    width: 10%;
-    height: 5%;
-    float: left;
-    transition: 8s ease-out;
-}
-
 body{
     font-family: monospace;
     height: 10%;
@@ -18,11 +11,6 @@ body{
     url(background.jpg);
     background-size: cover;
     background-position: center;
-}
-
-.row{
-    max-width: 100%;
-    margin: auto;
 }
 
 h1{
