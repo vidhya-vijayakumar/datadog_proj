@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <head> <b><h1 style="font-size:250%;"><h1 style="background-color:#800000;"><p style="color:white;">Walmart Sales DashBoard</h1></h1></b></head></p>
     <body bgcolor=" #303030">
         <p style="background-color:black;">
             <head>
@@ -25,17 +24,34 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<link rel="stylesheet"
-type="text/css"
-href="css/jquery-ui-lightness/jquery-ui.min.css" />
-<script type="text/javascript" src="js/jquery.js">
-</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui-lightness/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/autocomplete.js"></script>
 
-<script type="text/javascript" src="js/jquery-ui-lightness/jquery-ui.min.js">
-</script>
+<link rel="stylesheet" href="/css/bootstrap.css"/>
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/jquery-ui-lightness/jquery-ui.min.css" />
+<link rel="stylesheet" href="/css/jquery-ui.theme.css" />
+<script src="/js/bootstrap.js"> </script>
 
-<script type="text/javascript" src="js/autocomplete.js">
-</script>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">FORETELL</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/contactus">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/register">Register</a></li>
+          <li><a href="/users/logout">Loguut</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </head>
 <body>
 
@@ -60,163 +76,162 @@ href="css/jquery-ui-lightness/jquery-ui.min.css" />
     <p id="demo"></p>
   </div>
   
-  
-
-<script>
-    function myFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("mySearch");
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("myMenu");
-        li = ul.getElementsByTagName("li");
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
-            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
+    <script>
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
             }
         }
-    }
 
-$( function() {
-    var ul, li, index;
-    ul = document.getElementById("myMenu");
-    li = ul.getElementsByTagName("li");
+    $( function() {
+        var ul, li, index;
+        ul = document.getElementById("myMenu");
+        li = ul.getElementsByTagName("li");
 
-    var viewSalesByList = [];
+        var viewSalesByList = [];
 
-    for (index = 0; index < li.length; index++) {
-        itemText = li[index].getElementsByTagName("a")[0].text;
-        viewSalesByList.push(itemText);
-    }
+        for (index = 0; index < li.length; index++) {
+            itemText = li[index].getElementsByTagName("a")[0].text;
+            viewSalesByList.push(itemText);
+        }
 
-    $( "#autoComplete" ).autocomplete({
-      source: viewSalesByList,
-      autoFocus: true
-    });
-  } );    
-</script>
+        $( "#autoComplete" ).autocomplete({
+        source: viewSalesByList,
+        autoFocus: true
+        });
+    } );    
+    </script>
 
 </form>
 
-<div class='tableauPlaceholder' id='viz1541446394418' style='position: relative; left: 20px; top: 10px; bottom: 10px'>
-    <noscript>
-        <a href='#'>
-        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemVisibility-MRPRelationScatterPlot&#47;Sheet2&#47;1_rss.png' style='border: none' />
-    </a>
-</noscript>
-<object class='tableauViz'  style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-    <param name='embed_code_version' value='3' /> 
-    <param name='site_root' value='' />
-    <param name='name' value='ItemVisibility-MRPRelationScatterPlot&#47;Sheet2' />
-    <param name='tabs' value='no' /><param name='toolbar' value='yes' />
-    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemVisibility-MRPRelationScatterPlot&#47;Sheet2&#47;1.png' /> 
-    <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' />
-    <param name='display_spinner' value='yes' />
-    <param name='display_overlay' value='yes' />
-    <param name='display_count' value='yes' />
-</object>
-</div>                
-<script type='text/javascript'>                    
-var divElement = document.getElementById('viz1541446394418');                    
-var vizElement = divElement.getElementsByTagName('object')[0];                    
-vizElement.style.width='55%';vizElement.style.height=(divElement.offsetWidth*0.25)+'px';                    
-divElement.style.position='relative';  
-var scriptElement = document.createElement('script');                    
-scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+    <div class='tableauPlaceholder' id='viz1541446394418' style='position: relative; left: 20px; top: 10px; bottom: 10px'>
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemVisibility-MRPRelationScatterPlot&#47;Sheet2&#47;1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='ItemVisibility-MRPRelationScatterPlot&#47;Sheet2' />
+            <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemVisibility-MRPRelationScatterPlot&#47;Sheet2&#47;1.png' /> 
+            <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+        </object>
+    </div>                
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1541446394418');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        vizElement.style.width='55%';vizElement.style.height=(divElement.offsetWidth*0.25)+'px';                    
+        divElement.style.position='relative';  
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 
-<div class='tableauPlaceholder' id='viz1541448153822' style='position: relative; left: 500px;bottom: 300px'>
-    <noscript><a href='#'>
-        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemSales-BarChart&#47;Sheet1&#47;1_rss.png' style='border: none' class='center' />
-    </a>
-</noscript
-><object class='tableauViz'  style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-    <param name='embed_code_version' value='3' /> 
-    <param name='site_root' value='' />
-    <param name='name' value='ItemSales-BarChart&#47;Sheet1' />
-    <param name='tabs' value='no' /><param name='toolbar' value='yes' />
-    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemSales-BarChart&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' />
-    <param name='display_static_image' value='yes' />
-    <param name='display_spinner' value='yes' />
-    <param name='display_overlay' value='yes' />
-    <param name='display_count' value='yes' />
-</object>
-</div>                
-<script type='text/javascript'>                    
-var divElement = document.getElementById('viz1541448153822');                    
-var vizElement = divElement.getElementsByTagName('object')[0];                    
-vizElement.style.width='55%';
-vizElement.style.height=(divElement.offsetWidth*0.25)+'px'; 
-divElement.style.position='relative';                   
-var scriptElement = document.createElement('script');                    
-scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+    <div class='tableauPlaceholder' id='viz1541448153822' style='position: relative; left: 500px;bottom: 300px'>
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemSales-BarChart&#47;Sheet1&#47;1_rss.png' style='border: none' class='center' />
+            </a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='ItemSales-BarChart&#47;Sheet1' />
+            <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemSales-BarChart&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+        </object>
+    </div>                
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1541448153822');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        vizElement.style.width='55%';
+        vizElement.style.height=(divElement.offsetWidth*0.25)+'px'; 
+        divElement.style.position='relative';                   
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 
-<div class='tableauPlaceholder' id='viz1541454188373' style='position: relative;left: 980px;bottom: 650px'>
-    <noscript>
-        <a href='#'>
-            <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sh&#47;sheet-3&#47;Sheet3&#47;1_rss.png' style='border: none' />
-        </a>
-    </noscript>
-    <object class='tableauViz'  style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='sheet-3&#47;Sheet3' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sh&#47;sheet-3&#47;Sheet3&#47;1.png' /> 
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-    </object>
-</div>                
-<script type='text/javascript'>                    
-var divElement = document.getElementById('viz1541454188373');                    
-var vizElement = divElement.getElementsByTagName('object')[0];                    
-vizElement.style.width='55%';vizElement.style.height=(divElement.offsetWidth*0.25)+'px';                    
-var scriptElement = document.createElement('script');                    
-scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+    <div class='tableauPlaceholder' id='viz1541454188373' style='position: relative;left: 980px;bottom: 650px'>
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sh&#47;sheet-3&#47;Sheet3&#47;1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='sheet-3&#47;Sheet3' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sh&#47;sheet-3&#47;Sheet3&#47;1.png' /> 
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+        </object>
+    </div>                
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1541454188373');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        vizElement.style.width='55%';vizElement.style.height=(divElement.offsetWidth*0.25)+'px';                    
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 
-<div class='tableauPlaceholder' id='viz1541455421678' style='position: relative; left: 500px; bottom: 1350px'>
-    <noscript>
-        <a href='#'>
-            <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4&#47;1_rss.png' style='border: none' />
-        </a>
-    </noscript>
-    <object class='tableauViz'  style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-        <param name='embed_code_version' value='3' /> 
-        <param name='site_root' value='' />
-        <param name='name' value='ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4&#47;1.png' /> 
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-    </object>
-</div>                
-<script type='text/javascript'>                    
-var divElement = document.getElementById('viz1541455421678');                    
-var vizElement = divElement.getElementsByTagName('object')[0];                    
-vizElement.style.width='75%';vizElement.style.height=(divElement.offsetWidth*0.23)+'px';                    
-var scriptElement = document.createElement('script');                    
-scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+    <div class='tableauPlaceholder' id='viz1541455421678' style='position: relative; left: 500px; bottom: 1350px'>
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4&#47;1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;It&#47;ItemWeight-SalesRelation-Color-Blind-Friendly&#47;Sheet4&#47;1.png' /> 
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+        </object>
+    </div>                
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1541455421678');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        vizElement.style.width='75%';vizElement.style.height=(divElement.offsetWidth*0.23)+'px';                    
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
     </body>
 </html>
 
