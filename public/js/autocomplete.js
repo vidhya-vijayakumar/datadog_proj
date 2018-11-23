@@ -2,7 +2,7 @@ $(init);
 
 function init()
 {
-    /*$( "#tags" ).autocomplete({
+    $( "#tags" ).autocomplete({
         source: viewSalesBy
-      });*/
+      });
 }

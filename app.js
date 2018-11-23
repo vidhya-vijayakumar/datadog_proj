@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const passport = require('passport');
 const methodOverride = require('method-override')
+const MongoStore = require('connect-mongo')(session);
 
 // View engine setup
 // Load View Engine
@@ -23,8 +24,8 @@ app.use(methodOverride('_method'));
 // Configuring the database
 const dbConfig = require('./config/database');
 
-
 mongoose.Promise = global.Promise;
+const db = mongoose.connection
 
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
@@ -39,8 +40,13 @@ mongoose.connect(dbConfig.url, {
 // Public folder
 app.use(express.static(path.join(__dirname,'public')));
 
-// Sessions
-app.use(session( {secret:"String for encrypting cookies."} ));
+// Express Session Middleware
+app.use(session({
+  secret: 'String for session',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: db })
+}));
 
 // Express Messages Middleware
 app.use(flash());
@@ -73,6 +79,11 @@ require('./config/passport')(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('*', function(req, res, next){
+  res.locals.user = req.user || null;
+  next();
+});
 
 app.use('/', index);
 

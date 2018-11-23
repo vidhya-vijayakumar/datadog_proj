@@ -4,24 +4,6 @@
     padding: 0;
 }
 
-head
-{
-background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url(background.jpg) no-repeat center top;
-height: 100vh;
-background-size: cover;
-background-position: center;
-} 
-
-.logo {
-    width: 10%;
-    height: 5%;
-    float: left;
-    margin-top: 30px;
-    transition: 8s ease-out;
-    transform: rotate(360deg);
-}
-
 body{
     font-family: monospace;
     background-image: linear-gradient(rgba(15, 1, 1, 0.897),rgba(0,0,0,0.5)),
@@ -29,11 +11,6 @@ body{
     height: 100vh;
     background-size: cover;
     background-position: center;
-}
-
-.row{
-    max-width: 100%;
-    margin: auto;
 }
 
 h1{
@@ -78,8 +55,8 @@ h1{
 #canvas {
     display:block;
     margin:5vh auto;
-    margin-top: 100px;
-    margin-left: 30px;
+    margin-top: 80px;
+    margin-left: 40px;
     border-radius:50%;
     box-shadow: 0 3px 3px black;
     float: right;

@@ -106,11 +106,12 @@ router.get('/login', function(req, res){
 
 // Login Process
 router.post('/login', function(req, res, next){
+  console.log(req.session);
   passport.authenticate('local', {
     successRedirect:'/main',
     failureRedirect:'/users/login',
     failureFlash: true
-  })(req, res, next);
+  } )(req, res, next);
 });
 
 // logout
@@ -208,7 +209,10 @@ router.delete('/delete', function(req, res){
             res.redirect('/users/logout');
           }
         });
-      }  
+      } else {
+        req.flash('danger', 'User Not Found');
+        res.render('delete');
+      } 
   });
 });
 

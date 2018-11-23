@@ -35,6 +35,7 @@ module.exports.login = function(request,result)
 
 module.exports.main = function(req,res)
 {
+    console.log(req.session.passport.user);
     res.render('main');
 };
 
