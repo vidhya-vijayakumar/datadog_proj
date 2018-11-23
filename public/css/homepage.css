@@ -4,11 +4,11 @@
     padding: 0;
 }
 
-header
+head
 {
-height: 10%;
 background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url(background.jpg);
+url(background.jpg) no-repeat center top;
+height: 100vh;
 background-size: cover;
 background-position: center;
 } 
@@ -17,11 +17,18 @@ background-position: center;
     width: 10%;
     height: 5%;
     float: left;
+    margin-top: 30px;
     transition: 8s ease-out;
+    transform: rotate(360deg);
 }
 
 body{
     font-family: monospace;
+    background-image: linear-gradient(rgba(15, 1, 1, 0.897),rgba(0,0,0,0.5)),
+    url(/background.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
 .row{
@@ -51,7 +58,7 @@ h1{
 
 .main-nav li a
 {
-    color: rgb(163, 230, 215);
+    color: rgb(255, 230, 215);
     text-decoration: none;
     padding: 5px 20px;
     font-family: "Roboto", sans-serif;
@@ -67,3 +74,13 @@ h1{
 {
     border: 1px solid white;
 }
+
+#canvas {
+    display:block;
+    margin:5vh auto;
+    margin-top: 100px;
+    margin-left: 30px;
+    border-radius:50%;
+    box-shadow: 0 3px 3px black;
+    float: right;
+  }

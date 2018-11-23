@@ -26,12 +26,16 @@ html
                 a(href='/aboutus') About Us
               li
                 a(href='/contactus') Contact Us
-              li
-                a(href='/news') News
             ul.nav.navbar-nav.navbar-right
               if user
                 li 
+                  a(href='/users/update') Update
+                li 
+                  a(href='/users/delete') Delete
+                li 
                   a(href='/users/logout') Logout
+                li 
+                  a(href='/users/') Users
                 li 
                   a(href='/main') Main
               else

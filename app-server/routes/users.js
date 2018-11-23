@@ -107,7 +107,7 @@ router.get('/login', function(req, res){
 // Login Process
 router.post('/login', function(req, res, next){
   passport.authenticate('local', {
-    successRedirect:'/main.html',
+    successRedirect:'/main',
     failureRedirect:'/users/login',
     failureFlash: true
   })(req, res, next);

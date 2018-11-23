@@ -1,11 +1,11 @@
 extends layout
 
 block append head
-  link(rel='stylesheet' href='/aboutus.css')
+  link(rel='stylesheet' href='/css/aboutus.css')
   script(src='/js/jquery-3.1.1.js')
   script(src='/js/jquery-ui.js')        
   script(src='/js/tabs.js')
-block content
+block append body
   h1(class='ui-state-default') About Us
   div(id='tabs' class='ui-widget-content')
     ul
@@ -17,7 +17,3 @@ block content
         a(href='/ishaan') Ishaan
       li
         a(href='/haroon') Haroon
-
-
-
-  

@@ -1,14 +1,12 @@
 extends layout
 
 block append head
-  link(rel='stylesheet' href='/newuser.css')
+  link(rel='stylesheet' href='/css/register.css')
   link(rel='stylesheet' href='/css/jquery-ui.css')
   link(rel='stylesheet' href='/css/jquery-ui.theme.css')
-  script(type='text/javascript').
-    var x, i, j, selElmnt, a, b, c;
-    x='hi';
-
-
+  script(src='/js/jquery-3.1.1.js')
+  script(src='/js/jquery-ui.js')  
+  script(src='/js/register.js')      
 block content
   div(class='login-box')
     h1 Register
@@ -29,5 +27,16 @@ block content
       #form-group
         label Confirm Password:
         input.form-control(name='password2',type='password', placeholder='Confirm password')
+      #form-group
+        label Location:
+        #location.custom-select(width='140px') 
+        select
+          option(value='0') Select Location
+          option(value='1') California
+          option(value='2') New York
+          option(value='3') Texas
+          option(value='4') Florida
+          option(value='5') New Jersey
       br
       input.btn.btn-primary(type='submit',value='Submit')
+  

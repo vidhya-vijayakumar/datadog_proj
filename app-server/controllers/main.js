@@ -33,14 +33,9 @@ module.exports.login = function(request,result)
     sendPage('login.html',result);
 };
 
-module.exports.main = function(request,result)
+module.exports.main = function(req,res)
 {
-    sendPage('main.html',result);
-};
-
-module.exports.news= function(request,result)
-{
-    sendPage('news.html',result);
+    res.render('main');
 };
 
 module.exports.tableau = function(request,result)

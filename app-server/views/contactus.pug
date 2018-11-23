@@ -1,0 +1,51 @@
+extends layout
+
+block append body
+    script(src='/js/jquery-3.1.1.js')
+    script(src='/js/jquery-ui.js') 
+    script(src='/js/contactus.js')
+    link(rel='stylesheet' href='/css/contactus.css')
+    #wid-resize.row
+      .col-md-3
+      .col-md-6.well
+        h3.text-primary Drag and drop your Questions
+        hr(style='border-top: 1px dotted #8c8b8b;')
+        .pull-left(style='border:1px #000 dotted; width:430px;')
+          center
+            label.alert-danger(style='font-size:9px;')
+              b  Select your question from below: 
+          ul#draggable(style='list-style-type:none;')
+            li
+              b  Q. What is the future scope of the Project?
+            br
+            li
+              b Q. What algorithm is used for prediction
+            br
+            li
+              b Q. What is the total number of stores? 
+            br
+            li
+              b Q. What is the size of the data set involved? 
+            br
+            li
+              b Q. What are the sales numbers for each store?
+            br
+            li
+              b Q. What story is the project conveying?
+          p
+        .pull-right(style='padding:20px; border:1px #000 dotted; width:400px;')
+          .form-group
+            input.form-control.p_lang.ui-droppable(type='text', name='program')
+            center
+              label Your Questions
+            button#reset.btn.btn-success.pull-left(type='button')
+              span.glyphicon.glyphicon-refresh
+              |  Reset
+          br
+          br
+          button(onclick='myFunction()')  Submit
+          p#demo
+          script.
+            function myFunction() {
+            document.getElementById("demo").innerHTML = "Message Received!";
+            }
