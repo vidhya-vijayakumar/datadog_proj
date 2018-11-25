@@ -13,6 +13,7 @@ const MongoStore = require('connect-mongo')(session);
 
 // View engine setup
 // Load View Engine
+app.engine('pug', require('pug').__express)
 app.set('views', path.join(__dirname, '/app-server/views'));
 app.set('view engine', 'pug');
 
