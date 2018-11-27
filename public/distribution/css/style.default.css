@@ -1021,7 +1021,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 
 .statistic-block .number {
   color: inherit;
-  font-size: 2.2rem;
+  font-size: 1.2rem;
 }
 
 .progress.progress-template {
