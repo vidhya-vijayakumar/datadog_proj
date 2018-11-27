@@ -44,8 +44,9 @@ app.use(express.static(path.join(__dirname,'public')));
 // Express Session Middleware
 app.use(session({
   secret: 'String for session',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
+  cookie: { maxAge: 600000 },
   store: new MongoStore({ mongooseConnection: db })
 }));
 

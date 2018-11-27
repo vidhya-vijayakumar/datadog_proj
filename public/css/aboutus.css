@@ -9,6 +9,7 @@ body{
     height: 10%;
     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/background.jpg) no-repeat;
     background: url(/signup.jpeg) no-repeat center top;
+    padding-top: 80px;
 }
 
 h1{

@@ -23,6 +23,7 @@ function sendPage(fileName, result)
 
 module.exports.index = function(req,res)
 {
+    console.log(req.session);
     res.render('homepage', {
         title: 'We Foretell your E-Commerce orders for a better tomorrow'
     });

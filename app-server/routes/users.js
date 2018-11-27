@@ -14,7 +14,8 @@ router.get('/', function(req, res){
     } else {
       res.render('display', {
         title:'Users',
-        users: users
+        users: users,
+        user: req.user
       });
     }
   });
@@ -72,30 +73,45 @@ router.post('/register', function(req, res){
       errors:errors
     });
   } else {
-    let newUser = new User({
-      id:id,
-      username:username,
-      email:email,
-      password:password
-    });
+    // see if the user already exists
+    User.findOne({username:username}, function(err, myUser){
+      if(err) {
+        console.log('Error occured!');
+        console.log(err);
+      } else {
+        if(myUser) {
+          console.log(myUser);
+          req.flash('danger','Username already exists!');
+          res.redirect('/users/register');
+        } else {
+          let newUser = new User({
+            id:id,
+            username:username,
+            email:email,
+            password:password
+          });
 
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(newUser.password, salt, function(err, hash){
-        if(err){
-          console.log(err);
-        }
-        newUser.password = hash;
-        newUser.save(function(err){
-          if(err){
-            console.log(err);
-            return;
-          } else {
-            req.flash('success','You are now registered and can log in');
-            res.redirect('/users/login');
-          }
-        });
-      });
-    });
+          bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(newUser.password, salt, function(err, hash){
+              if(err){
+                console.log(err);
+              }
+              newUser.password = hash;
+              newUser.save(function(err){
+                if(err){
+                  console.log(err);
+                  return;
+                } else {
+                  req.flash('success','You are now registered and can log in');
+                  res.redirect('/users/login');
+                }
+              }); // end of save
+            }); // end of bcrypt hash
+          }); // end of gensalt
+        } // end of else for userExists
+      } // if no error 
+
+    }); // end of findOne
   }
 });
 
@@ -110,7 +126,7 @@ router.post('/login', function(req, res, next){
   passport.authenticate('local', {
     successRedirect:'/distribution/index.html',
     failureRedirect:'/users/login',
-    failureFlash: true
+    failureFlash: 'Invalid username or password'
   } )(req, res, next);
 });
 
@@ -129,50 +145,65 @@ router.get('/update', ensureAuthenticated, function(req, res){
 // Update Submit POST Route
 router.put('/update', function(req, res){
   console.log(req.body);
-  // authenticate before updating
-  User.findOne({username:req.body.username}, function(err, myUser){
-    if(err) {
-      console.log('Error occured!');
-      console.log(err);
-    } 
-    if (myUser) {
-      // if the user exists
-      let updatedUser = {};
-      updatedUser.id = req.body.id;
-      updatedUser.username = req.body.username;
-      updatedUser.email = req.body.email;
-      updatedUser.password = req.body.password;
-    
-      bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash(updatedUser.password, salt, function(err, hash){
-          if(err){
-            console.log(err);
-          }
-          updatedUser.password = hash;
-          let query = {username:req.body.username};
+  
+  // check for required fields
+  req.checkBody('username', 'Name is required').notEmpty();
+  req.checkBody('username', 'Username do not match with current user').equals(req.user.username);
+  let errors = req.validationErrors();
 
-          User.update(query, updatedUser, function(err){
+  if(errors){
+    res.render('update', {
+      errors:errors,
+      user:req.user
+    });
+  } else {
+    // authenticate before updating
+    User.findOne({username:req.body.username}, function(err, myUser){
+      if(err) {
+        console.log('Error occured!');
+        console.log(err);
+      } 
+      if (myUser) {
+        // if the user exists
+        let updatedUser = {};
+        updatedUser.id = req.body.id;
+        updatedUser.username = req.body.username;
+        updatedUser.email = req.body.email;
+        updatedUser.password = req.body.password;
+      
+        bcrypt.genSalt(10, function(err, salt){
+          bcrypt.hash(updatedUser.password, salt, function(err, hash){
             if(err){
               console.log(err);
-              return;
-            } else {
-              req.flash('success', 'User Updated');
-              res.redirect('/users/logout');
             }
+            updatedUser.password = hash;
+            let query = {username:req.body.username};
+
+            User.updateOne(query, updatedUser, function(err){
+              if(err){
+                console.log(err);
+                return;
+              } else {
+                req.logout();
+                req.flash('success', 'User Updated');
+                res.redirect('/users/logout');
+              }
+            });
           });
         });
-      });
-    } else {
-      // Do not update
-      res.render('update');
-    }
-    // later add this logic to see if the person is 
-    // updating his own record
-    /*if(myUser.id != req.user._id) {
-      req.flash('danger', 'Not Authorized');
-      res.redirect('/');
-    }*/
-  });
+      } else {
+        // Do not update
+        req.flash('danger', 'Wrong Username!');
+        res.redirect('/users/update');
+      }
+      // later add this logic to see if the person is 
+      // updating his own record
+      /*if(myUser.id != req.user._id) {
+        req.flash('danger', 'Not Authorized');
+        res.redirect('/');
+      }*/
+    });
+  }
 });
 
 // Load Update Form
@@ -188,7 +219,8 @@ router.delete('/delete', function(req, res){
   // Check if username exists
   if(errors){
     res.render('delete', {
-      errors:errors
+      errors:errors,
+      user: req.user
     });
   } 
   User.findOne({username:req.body.username}, function(err, myUser){
