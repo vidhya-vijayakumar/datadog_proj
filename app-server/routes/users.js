@@ -134,7 +134,10 @@ router.post('/login', function(req, res, next){
 router.get('/logout', function(req, res){
   req.logout();
   req.flash('success', 'You are logged out');
-  res.redirect('/users/login');
+  //res.redirect('/users/login');
+  res.render('login', {
+    user: req.user
+  });
 });
 
 // Load Update Form
