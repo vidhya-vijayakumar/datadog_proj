@@ -124,7 +124,7 @@ router.get('/login', function(req, res){
 router.post('/login', function(req, res, next){
   console.log(req.session);
   passport.authenticate('local', {
-    successRedirect:'/distribution/index.html',
+    successRedirect:'/dashboard-template/index.html',
     failureRedirect:'/users/login',
     failureFlash: 'Invalid username or password'
   } )(req, res, next);
